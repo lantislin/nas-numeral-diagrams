@@ -112,7 +112,6 @@ export default {
   },
   methods: {
     onChange(val){
-      console.log(this.$event);
       if(Number(val) === NaN){
         return;
       }
