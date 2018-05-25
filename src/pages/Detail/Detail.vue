@@ -91,7 +91,6 @@ export default {
   },
   data(){
     var params = base64Decode(this.$route.params.args);
-    console.log(params);
   	return {
       params: params,
       id: params.id,
@@ -152,7 +151,7 @@ export default {
         },
         onSuccess(res){
           self.closeLoading();
-          console.log(res.data);
+          //console.log(res.data);
           self.item = res.data;
           self.initData();
         },
@@ -179,8 +178,8 @@ export default {
           self.openLoading();
         },
         onSuccess(res){
+          //console.log(res);
           self.closeLoading();
-          console.log(res.data);
           self.data = res.data;
           self.initData();
         },

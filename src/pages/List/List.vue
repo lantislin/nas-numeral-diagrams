@@ -96,7 +96,7 @@ export default {
         },
         onSuccess(res){
           self.closeLoading();
-          console.log(res.data);
+          //console.log(res.data);
           self.data = res.data;
         },
         onFailed(data){
@@ -162,12 +162,6 @@ export default {
 </script>
 
 <style>
-  .nas-page-content-create .hui-btn-block{
-    width: 100%;
-  }
-  .nas-page-content-create .el-form-item__label{
-    float: none;
-  }
   .diagram-item{
     margin-bottom: 20px;
     border-radius: 0;
