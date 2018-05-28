@@ -11,7 +11,7 @@
     <el-row :gutter="20">
       <el-col :span="12" v-for="(item, index) in data.rows" :key="index">
         <el-card shadow="hover" class="diagram-item">
-          <time class="time">{{ formatTime(item.createtime) }}前</time>
+          <time class="time">{{ formatTime(item.createTime) }}前</time>
           <div class="card-content">
             <el-row :gutter="10">
               <el-col :span="10">

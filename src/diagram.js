@@ -273,7 +273,7 @@ var portraitToDiagrams = {
   "水地": "比",
   "风天": "小畜",
   "天泽": "履",
-  "地大": "泰",
+  "地天": "泰",
   "天地": "否",
   "天火": "同人",
   "火天": "大有",
@@ -1133,9 +1133,6 @@ Diagram.prototype = {
       }
       obj.push({"label": v, "value": v, children: children});
     }
-    
-
-    console.log(JSON.stringify(obj)); 
   },
   getDiagramPhoto() {
     return this.getLines();

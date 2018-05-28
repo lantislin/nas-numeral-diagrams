@@ -8,7 +8,7 @@
 
     <div class="diagram-detail">
       <el-card shadow="never" class="diagram-item">
-        <time class="time">{{ formatTime(item.createtime) }}前</time>
+        <time class="time">{{ formatTime(item.createTime) }}前</time>
         <div class="card-content">
           <el-row :gutter="10">
             <el-col :span="10">
@@ -24,23 +24,27 @@
           </el-row>    
         </div>
         <div class="card-footer">
-          <div class="auther" :title="auther">发布者：{{ item.auther }}</div>
-          <div class="auther" :title="auther">第一位数字：{{ item.firstNum }}</div>
-          <div class="auther" :title="auther">第二位数字：{{ item.secondNum }}</div>
-          <div class="auther" :title="auther">第三位数字：{{ item.thirdNum }}</div>
-          <div class="auther" :title="auther">卦名：{{ item.diagramName }}</div>
-          <div class="auther" :title="auther">动爻：{{ item.lineName }}</div>
-          <div class="auther" :title="auther">求卦类型：{{ item.type }}</div>         
-          <div class="auther" :title="auther">其它说明：{{ item.content }}</div>
+          <div class="auther">发布者：{{ item.auther }}</div>
+          <div class="auther">第一位数字：{{ item.firstNum }}</div>
+          <div class="auther">第二位数字：{{ item.secondNum }}</div>
+          <div class="auther">第三位数字：{{ item.thirdNum }}</div>
+          <div class="auther">卦名：{{ item.diagramName }}</div>
+          <div class="auther">动爻：{{ item.lineName }}</div>
+          <div class="auther">求卦类型：{{ item.type }}</div>         
+          <div class="auther">其它说明：{{ item.content }}</div>
         </div>
       </el-card>
 
       <div class="comments">
-        <div class="comment-list">
+        <h2 class="comment-title">高手解卦：</h2>
+        <div class="comment-list" v-if="data.total > 0">
           <el-card shadow="never" v-for="(row, index) in data.rows" :key="index" class="comment-item">
-            <h2 class="comment-item-title">作者：{{ row.auther }}，在{{ formatTime(row.createtime) }}前，添加了评论：</h2>
+            <h2 class="comment-item-title">作者：{{ row.auther }}，在{{ formatTime(row.createTime) }}前，添加了评论：</h2>
             <p class="comment-item-content">{{ row.content }}</p>
           </el-card>
+        </div>
+        <div class="comment-list" v-else>
+          还没有人评论
         </div>
 
         <div class="pagebar clearfix">
@@ -52,7 +56,7 @@
             :total="data.total">
           </el-pagination>
           <div class="page-info">
-            共{{ data.total }}条记录
+            共{{ data.total }}条评论
           </div>
         </div>
       </div>
@@ -107,7 +111,7 @@ export default {
         content: '',
         id: '',
         auther: '',
-        createtime: ''
+        createTime: ''
       },
       diagram: new Diagram(),
       pageSize: 10,
@@ -226,6 +230,8 @@ export default {
 
           setTimeout(()=>{
             self.queryComments();
+            self.form.content = '';
+            document.documentElement.scrollTop = 0;
           }, 2000);
         },
         onFailed(data){
@@ -252,18 +258,6 @@ export default {
       }else{
         this.showTips = false;
       }
-    },
-    create(){
-      this.$router.push({
-        name: 'CreatePassage',
-        params: { 
-          args: base64Encode({
-            title: this.title,
-            founder: this.founder,
-            createtime: this.createtime
-          })
-        }
-      });
     },
   	currentChange(pageNumber){
       this.queryComments(pageNumber);
@@ -292,12 +286,18 @@ export default {
   .diagram-detail{
     margin-top: 20px;
   }
+  .diagram-detail .diagram-item{
+    margin-bottom: 15px; 
+  }
   .diagram-detail .el-card{
     border-radius: 0;
     margin-top: -1px;
   }
   .comments .pagebar{
     margin:10px 0; 
+  }
+  .comment-title{
+    font-size: 18px;
   }
   .comment-item-title{
     border-bottom: 1px solid #ddd;
@@ -306,46 +306,19 @@ export default {
     line-height: 30px;
     color: #666;
   }
-  .nas-page-content-detail .title,
-  .nas-page-content-detail .subtitle{
-    text-align: center;
-    font-weight: normal;
+  .comment-item .el-card__body{
+    padding:0;
   }
-  .nas-page-content-detail .title{
-    font-size: 24px;
+  .comment-item-title,
+  .comment-item-content{
+    margin: 0;  
   }
-  .nas-page-content-detail .subtitle{
-    font-size: 14px;
-    color: #999;
-  }
-  .nas-page-content-detail .description{
-    padding: 20px;
-    border: 1px dashed #eeeeee;
+  .comment-item-title{
+    padding: 5px 20px;
     background-color: #fafafa;
-    margin-bottom: 20px;
-    color: #999;
-    font-size: 14px;
-    border-radius: 5px;
   }
-  .nas-page-content-detail .article{
-    margin-top: 20px;
-    margin-bottom: 20px; 
-    border-radius: 5px;
-  }
-  .nas-page-content-detail .content{
-    min-height: 400px;
-    word-wrap: break-word; 
-    word-break: normal; 
-  }
-  .nas-page-content-detail .footer{
-    padding-left: 20px;
-    padding-right: 20px;
-    line-height: 30px;
-    background-color: #f0f9eb;
-    border:1px dashed #c2e7b0;
-    margin-top: 20px; 
-    font-size: 14px;
-    border-radius: 3px;
+  .comment-item-content{
+    padding: 20px;
   }
   .comment-submit{
     width: 150px;

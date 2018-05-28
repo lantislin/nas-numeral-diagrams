@@ -169,8 +169,6 @@ export default {
         this.diagramIntroduce =  this.diagram.getIntroduces();
         this.diagramDescription = this.diagram.getDescription();
         this.lineDescription = this.diagram.getLineDescription();
-
-        this.diagram.getDiagramLine();
       }, 2000);    
     },
     message(msg){

@@ -51,7 +51,7 @@ NumeralDiagrams.prototype = {
       content: content,
       id: id,
       auther: Blockchain.transaction.from,
-      createtime: new Date().getTime()
+      createTime: new Date().getTime()
     };
 
     this.diagrams.set(id, obj);
@@ -116,6 +116,12 @@ NumeralDiagrams.prototype = {
       rows.push(this.diagrams.get(this.diagramsIndex.get(i)));
     }
 
+    if(rows.length > 0){
+      rows.sort(function(a, b){
+        return b.createTime - a.createTime;
+      });
+    }
+
     return {
       success: 1,
       msg: 'ok',
@@ -157,13 +163,14 @@ NumeralDiagrams.prototype = {
       content: content,
       id: id,
       auther: Blockchain.transaction.from,
-      createtime: new Date().getTime()
+      createTime: new Date().getTime()
     };
     var ids = this.diagramIdByCommentIds.get(diagramId) || [];
+    ids.push(id);
 
     this.comments.set(id, obj);
     this.commentsIndex.set(this.commentsTotal, id);
-    this.diagramIdByCommentIds.set(diagramId, ids.push(id));
+    this.diagramIdByCommentIds.set(diagramId, ids);
     this.commentsTotal++;
 
     return {
@@ -187,7 +194,7 @@ NumeralDiagrams.prototype = {
     var start = (pageNumber - 1) * pageSize;
     var end = pageNumber * pageSize;
     var ids = this.diagramIdByCommentIds.get(diagramId) || [];
-    var total = ids.length || this.commentsTotal;
+    var total = ids.length;
     var rows = [];
 
     if (end >= total) {
@@ -207,7 +214,13 @@ NumeralDiagrams.prototype = {
     }
 
     for (var i = start; i < end; i++) {
-      rows.push(this.comments.get(ids.length > 0 ? ids[i] : this.commentsIndex.get(i)));
+      rows.push(this.comments.get(ids[i]));
+    }
+
+    if(rows.length > 0){
+      rows.sort(function(a, b){
+        return b.createTime - a.createTime;
+      });
     }
 
     return {
