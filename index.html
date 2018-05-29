@@ -16,7 +16,7 @@
     <script src="./static/js/nebulas.js"></script>
     <script type="text/javascript">
       var NODE_ENV = '<%= htmlWebpackPlugin.options.NODE_ENV %>';
-      var dappAddress = NODE_ENV === 'production' ? 'n1jejmubytXFhGvdZppUNuRDBK2L7yLf5QD' : 'n1mXzjuCNMtNNZx4KjBjRY7iYA9xGuqLXMC';
+      var dappAddress = NODE_ENV === 'production' ? 'n1vnCJ4Mv6qBHvGFo9eHDoMUr7JvGnv2hqL' : 'n1mXzjuCNMtNNZx4KjBjRY7iYA9xGuqLXMC';
       var NebPay = require("nebpay");
       var nebPay = new NebPay();
       var payCallbackUrl = NODE_ENV === 'production' ? NebPay.config.mainnetUrl : NebPay.config.testnetUrl;
