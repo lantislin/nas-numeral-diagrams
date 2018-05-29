@@ -81,7 +81,7 @@ window.nebPayCall = function(options){
           options.onSuccess(respObject);
         }  
       }else{
-        if(count > 3){
+        if(count > 5){
           clearInterval(intervalQueryId);
           if(typeof options.onFailed === 'function'){
             options.onFailed(respObject);
