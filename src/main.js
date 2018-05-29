@@ -104,7 +104,7 @@ window.nebPayCall = function(options){
     listener: function(resp) {
       intervalQueryId = setInterval(function() {
         queryResultInfo();
-      }, 10000);
+      }, 5000);
     }
   });
 };
