@@ -1,9 +1,9 @@
-import component from './FAQ.vue';
+import component from './Use.vue';
 
 let router = [
   {
-    path: '/FAQ',
-    name: 'FAQ',
+    path: '/Use',
+    name: 'Use',
     component: component
   }
 ]

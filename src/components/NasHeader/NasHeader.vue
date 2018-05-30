@@ -24,7 +24,8 @@ export default {
       menuList: [
         {"menuName": "首页", "routerName": "Home"},
         {"menuName": "问卦解卦", "routerName": "List"},
-        {"menuName": "FAQ", "routerName": "FAQ"}
+        {"menuName": "如何使用", "routerName": "Use"},
+        {"menuName": "联系我们", "routerName": "Contact"}
       ]
   	}
   },
