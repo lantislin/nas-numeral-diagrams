@@ -5,8 +5,8 @@ var version = process.argv.splice(2)[0] || 'index';
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../dist/' + version.replace(/\./g, '_') + '.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    index: path.resolve(__dirname, '../docs/' + version.replace(/\./g, '_') + '.html'),
+    assetsRoot: path.resolve(__dirname, '../docs'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
     productionSourceMap: false,
